@@ -1,0 +1,88 @@
+FAKE NEWS DETECTION PROJECT:
+import pandas as pd
+import re
+import nltk
+
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+df = pd.read_excel("C:\\Fake 2\\new_fake_proj_ds.xlsx")
+
+# Fill missing values
+df = df.fillna('')
+
+# Text preprocessing
+ps = PorterStemmer()
+
+def preprocess(text):
+    text = re.sub('[^a-zA-Z]', ' ', str(text))
+    text = text.lower()
+    words = text.split()
+    words = [ps.stem(word) for word in words if word not in stopwords.words('english')]
+    return ' '.join(words)
+
+# Combine title and text
+df['content'] = df['title'] + " " + df['text']
+
+# Apply preprocessing
+df['content'] = df['content'].apply(preprocess)
+
+# Features and labels
+X = df['content']
+y = df['label']
+
+# Convert text to numbers
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(X)
+
+# Split dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+# Accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", round(accuracy * 100, 2), "%")
+
+# User input prediction
+while True:
+    news = input("\nEnter News Text: ")
+
+    news = preprocess(news)
+    news_vector = vectorizer.transform([news])
+
+    prediction = model.predict(news_vector)
+
+    if prediction[0] == 1:
+        print("Real News")
+    else:
+        print("Fake News")
+
+    choice = input("Check another news? (yes/no): ")
+    if choice.lower() != "yes":
+        break
+OUTPUT:
+Accuracy: 52.0 %
+
+Enter News Text: Quickly even new mind science gun.
+Fake News
+Check another news? (yes/no): yes
+
+Enter News Text: Method purpose mission approach professor short.
+Fake News
+
+
+
