@@ -1,0 +1,158 @@
+FAKE NEWS DETECTION USING MACHINE LEARNING
+1. Introduction
+
+Fake News Detection is a Machine Learning application that identifies whether a news article is real or fake based on its textual content. Due to the rapid growth of social media and online news platforms, fake news spreads quickly and can mislead people. This project uses Natural Language Processing (NLP) and Machine Learning techniques to classify news articles as Real News or Fake News.
+
+2. Objective
+
+The main objective of this project is:
+
+  *To detect fake news automatically.
+  *To preprocess textual news data.
+  *To convert text into numerical features using TF-IDF.
+  *To train a Machine Learning model for classification.
+  *To predict whether a user-entered news article is real or fake.
+3. System Requirements
+
+  Hardware Requirements
+  Processor: Intel Core i3 or above
+  RAM: 4 GB or above
+  Storage: 500 MB free space
+  Software Requirements
+  Python 3.x
+  Jupyter Notebook / VS Code
+  Pandas
+  NumPy
+  NLTK
+  Scikit-learn
+
+4. Modules
+  4.1 Data Collection Module
+    News data is collected from an Excel dataset.
+      Dataset contains:
+        Title
+        News Text
+        Label (Real/Fake)
+
+  4.2 Data Preprocessing Module
+
+    This module cleans the text data by:
+
+      Removing special characters
+      Converting text to lowercase
+      Removing stop words
+      Applying stemming using Porter Stemmer
+
+4.3 Feature Extraction Module
+  TF-IDF Vectorizer is used.
+  Converts text into numerical vectors.
+  Important words receive higher weights.
+
+4.4 Model Training Module
+  Logistic Regression algorithm is used.
+  Dataset is divided into:
+  Training Data (80%)
+  Testing Data (20%)
+
+4.5 Prediction Module
+  User enters a news statement.
+  Text is preprocessed.
+  TF-IDF transformation is applied.
+  Model predicts:
+  Real News
+  Fake News
+
+4.6 Evaluation Module
+  Accuracy Score is calculated.
+  Model performance is evaluated using test data.
+
+5. Algorithm Used
+  Logistic Regression
+
+Logistic Regression is a supervised machine learning algorithm used for binary classification problems.
+
+Advantages:
+
+Simple and efficient.
+Fast training process.
+Suitable for text classification.
+Good performance on large datasets.
+
+6. Working Procedure
+
+Step 1: Load Dataset
+Read news dataset from Excel file.
+
+Step 2: Handle Missing Values
+Empty values are replaced with blank strings.
+
+Step 3: Text Preprocessing
+Remove unwanted characters.
+Convert to lowercase.
+Remove stop words.
+Apply stemming.
+
+Step 4: Feature Extraction
+Convert text into TF-IDF vectors.
+
+Step 5: Train-Test Split
+Split dataset into training and testing sets.
+
+Step 6: Model Training
+Train Logistic Regression model.
+
+Step 7: Prediction
+Predict fake or real news.
+
+Step 8: Accuracy Calculation
+Calculate model accuracy.
+
+7. Output
+Sample Output
+Accuracy: 52.0 %
+
+Enter News Text:
+Quickly even new mind science gun.
+
+Prediction:
+Fake News
+Interpretation
+The model achieved an accuracy of 52%.
+Accuracy depends on:
+Dataset quality
+Dataset size
+Feature selection
+Data preprocessing techniques
+
+8. Advantages
+Detects fake news automatically.
+Reduces misinformation.
+Fast prediction process.
+Easy to use.
+Supports real-time user input.
+
+9. Applications
+Social Media Platforms
+Online News Portals
+Fact Checking Systems
+Digital Journalism
+Information Verification Systems
+
+10. Future Enhancements
+Use larger datasets.
+Apply advanced NLP techniques.
+Use Deep Learning models such as:
+LSTM
+BERT
+Transformers
+Develop a web application using Flask or Django.
+Improve prediction accuracy.
+11. Conclusion
+
+The Fake News Detection system successfully classifies news articles as real or fake using Natural Language Processing and Machine Learning techniques. Logistic Regression and TF-IDF Vectorization are used to process and classify news content. This project demonstrates how machine learning can help reduce the spread of fake information and improve the reliability of online news.
+
+Current Accuracy: 52.0%
+Algorithm Used: Logistic Regression
+Feature Extraction: TF-IDF Vectorizer
+Programming Language: Python
+Domain: Natural Language Processing (NLP) & Machine Learning.
